@@ -10,8 +10,11 @@
 		"deploy-local": "npx hardhat run ./scripts/Contract_deploy.js --network localhost"
 	},
 	"dependencies": {
+		"@openzeppelin/contracts": "^4.7.3",
+		"caver-js": "^1.10.2",
 		"dotenv": "^16.0.2",
-		"@openzeppelin/contracts": "^4.7.3"
+		"truffle-hdwallet-provider-klaytn": "^1.4.2",
+		"web3": "^1.10.0"
 	},
 	"devDependencies": {
 		"@nomicfoundation/hardhat-toolbox": "^1.0.2",
