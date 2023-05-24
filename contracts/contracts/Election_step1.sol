@@ -1,7 +1,7 @@
 //pragma solidity ^0.8.9;
 pragma solidity >=0.4.22 <0.9.0;
 
-contract Election {
+contract Election_step1 {
     struct Candidate {
         uint id;
         string name;
