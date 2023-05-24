@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-	const Contract = await hre.ethers.getContractFactory("Contract");
+	const Contract = await hre.ethers.getContractFactory("Election");
 	const contract = await Contract.deploy();
 
 	await contract.deployed();
