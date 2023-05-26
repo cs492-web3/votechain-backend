@@ -21,7 +21,7 @@ const NFTToken = artifacts.require("./NFTToken.sol");
 const Election = artifacts.require("./Election_step2.sol");
 
 module.exports = async (deployer) => {
-  await deployer.deploy(NFTToken, "Nupjuk_name", "Nupjuk_symbol");
+  await deployer.deploy(NFTToken, "Vote Name", "Nupjuk_symbol");
   const token = await NFTToken.deployed();
 
   await deployer.deploy(Election, token.address);
