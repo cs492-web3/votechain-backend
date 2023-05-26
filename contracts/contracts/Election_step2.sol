@@ -1,11 +1,11 @@
-//pragma solidity ^0.8.9;
 pragma solidity >=0.4.22 <0.9.0;
 
-// 직접 후보를 등록할 수 있음.
-// 단, 등록한 후보는 못 지움! (블록체인 성질)
-// 후보 등록이 언제나
+import "./NFTToken.sol";
 
 contract Election_step2 {
+
+    NFTToken public VoteNFT;
+    address public NFTTokenCA;
 
     // track what is happening in the contract
     enum ElectionStatus {
@@ -23,9 +23,10 @@ contract Election_step2 {
 
     mapping(uint => Candidate) public candidates;
     mapping(address => bool) public voters; // prevent voting more than once (Voter struct 만들 필요 있을까?)
+    mapping(address => uint) public votersToToken;
 
     ElectionStatus public electionStatus;
-    address public admin;
+    address public admin; // NOTE: onlyOwner (Ownable.sol)로 바꿀까??
     uint public totalCandidateNum; // track candidate id
     uint public totalVoteCount;
     
@@ -64,10 +65,12 @@ contract Election_step2 {
     event voteDoneEvent (); // TODO: 투표자가 투표를 하고나서 전송해야하는 정보가 있을까용 (ex. voter msg.sender)
     // ------------------------------------------------------
     // the very first contract transaction
-    constructor() public {
+    constructor(address _NFTTokenCA) public {
         admin = msg.sender;
-        electionStatus = ElectionStatus.registerCandStarted;
-        // 시작하자마자 후보등록시작 상태
+        electionStatus = ElectionStatus.registerCandStarted; // 시작하자마자 후보등록시작 상태
+
+        NFTTokenCA = _NFTTokenCA;
+        VoteNFT = NFTToken(NFTTokenCA);
     }
 
     // ================== FUNCTION =======================
@@ -91,6 +94,11 @@ contract Election_step2 {
         electionStatus = ElectionStatus.voteEnded;
         //emit statusChangedEvent(ElectionStatus.voteStarted, ElectionStatus.voteEnded);
     }
+    // special funciton~~
+    function restartVoteSession()  public
+        checkAdmin checkVoteEnded {
+        electionStatus = ElectionStatus.voteStarted;
+    }
     
 
     // ------ 투표 시스템을 위한 함수 ------
@@ -109,12 +117,19 @@ contract Election_step2 {
         voters[msg.sender] = true;
         candidates[candidateId].voteCount++;
         totalVoteCount++;
-
         //emit voteDoneEvent(); // 과연 필요할까?
     }
-    
 
-    // ------ for client (view functions) --------
+    function voteAndGetNFT(uint candidateId) public returns (uint){
+        vote(candidateId);
+        uint tokenId = VoteNFT.mintToken(msg.sender); // 투표자가 민팅하게 함 (가스비를 투표자가 부담..ㅋㅋㅋㅋ)
+        votersToToken[msg.sender] = tokenId;
+
+        return tokenId; //NOTE: 없앨까 말까 고민
+    }
+
+
+    // ------ Getter --------
 
     // ex. 등록된 후보자가 4명이라면, totalCandidateNum = 4, 후보 아이디는 0~3번까지 존재
     function getTotalCandidateNum() public view returns (uint) {
@@ -144,10 +159,17 @@ contract Election_step2 {
         return electionStatus;
     }
 
+    function getHasVoted(address addr) public view returns(bool) {
+        return voters[addr];
+    }
 
+    function getTokenId(address addr) public view returns(uint) {
+        return votersToToken[addr];
+    }
 
-    
-    
+    function getNFTTokenCA() public view returns(address) {
+        return NFTTokenCA;
+    }
 
     
 }
