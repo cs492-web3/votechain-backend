@@ -10,7 +10,7 @@ contract Election_step2 {
     // track what is happening in the contract
     enum ElectionStatus {
         registerCandStarted,
-        registerCandEnded,
+        //registerCandEnded,
         voteStarted,
         voteEnded
     }
@@ -34,10 +34,6 @@ contract Election_step2 {
 
     modifier checkRegisterCandidateStarted() {
         require (electionStatus == ElectionStatus.registerCandStarted, "Error: Status is not registerCandStarted.");
-        _;
-    }
-    modifier checkRegisterCandidateEnded() {
-        require (electionStatus == ElectionStatus.registerCandEnded, "Error: Status is not registerCandEnded.");
         _;
     }
     modifier checkVoteStarted() {
@@ -76,25 +72,18 @@ contract Election_step2 {
     // ================== FUNCTION =======================
     // ------ status 바꿔주는 함수 -------
 
-    // 시작하자마자 후보등록시작 상태 이기 떄문에 startRegisterCandidate 불필요
-    function endRegisterCandSession() public 
+    // 시작하자마자 후보등록 시작 상태 이기 떄문에 startRegisterCandidate 불필요
+    function startVoteSession() public 
         checkAdmin checkRegisterCandidateStarted  {
-        electionStatus = ElectionStatus.registerCandEnded;
-        //emit statusChangedEvent(ElectionStatus.registerCandStarted, ElectionStatus.registerCandEnded);
-    }
-
-    function startVoteSession() public
-        checkAdmin checkRegisterCandidateEnded {
         electionStatus = ElectionStatus.voteStarted;
-        //emit statusChangedEvent(ElectionStatus.registerCandEnded, ElectionStatus.voteStarted);
     }
 
     function endVoteSession() public
         checkAdmin checkVoteStarted {
         electionStatus = ElectionStatus.voteEnded;
-        //emit statusChangedEvent(ElectionStatus.voteStarted, ElectionStatus.voteEnded);
     }
-    // special funciton~~
+
+    // special function~~
     function restartVoteSession()  public
         checkAdmin checkVoteEnded {
         electionStatus = ElectionStatus.voteStarted;
