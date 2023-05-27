@@ -1,16 +1,19 @@
 const hre = require("hardhat");
 
 async function main() {
-	const Contract = await hre.ethers.getContractFactory("Election_step2");
+  const NFTContract_ = await hre.ethers.getContractFactory("NFTToken");
+  const Contract = await hre.ethers.getContractFactory("Election_step2");
 
-	const contract = await Contract.deploy();
+  const NFTContract = await NFTContract_.deploy("Vote Name", "Nupjuk_symbol");
+  await NFTContract.deployed();
 
-	await contract.deployed();
+  console.log("NFTContract.address: ", NFTContract.address);
+  const contract = await Contract.deploy(NFTContract.address);
+  await contract.deployed();
 
-	console.log("Contract deployed to:", contract.address);
+  console.log("Contract deployed to:", contract.address);
 }
-
 main().catch((error) => {
-	console.error(error);
-	process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });

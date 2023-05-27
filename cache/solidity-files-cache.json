@@ -1,10 +1,45 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
-      "lastModificationDate": 1684649793638,
-      "contentHash": "95a6c227d1b8843e9385518a5bce4853",
-      "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/contracts/contracts/Election_step1.sol": {
+      "lastModificationDate": 1684941382326,
+      "contentHash": "349ed38829acb017f99b3b1ca19267e4",
+      "sourceName": "contracts/contracts/Election_step1.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "Election_step1"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/contracts/contracts/Election_step2.sol": {
+      "lastModificationDate": 1685113299875,
+      "contentHash": "1c05143e77a93f3f25a6932c88334839",
+      "sourceName": "contracts/contracts/Election_step2.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -29,10 +64,89 @@
         }
       },
       "imports": [
+        "./NFTToken.sol"
+      ],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "Election_step2"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/contracts/contracts/NFTToken.sol": {
+      "lastModificationDate": 1685113301483,
+      "contentHash": "02e6330f750cb82b7284def1bf607a35",
+      "sourceName": "contracts/contracts/NFTToken.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+<<<<<<< Updated upstream
         "./IAccessControl.sol",
         "../utils/Context.sol",
         "../utils/Strings.sol",
         "../utils/introspection/ERC165.sol"
+=======
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "NFTToken"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1684649793618,
+      "contentHash": "e436cea06129be2c73cda4b1acc848b5",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+>>>>>>> Stashed changes
       ],
       "versionPragmas": [
         "^0.8.0"
@@ -41,10 +155,54 @@
         "AccessControl"
       ]
     },
+<<<<<<< Updated upstream
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
       "lastModificationDate": 1684649793747,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+=======
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
+      "lastModificationDate": 1684650458869,
+      "contentHash": "8af32effd0536e2971ff8496812a5016",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../ERC721.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721URIStorage"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1684649793806,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+>>>>>>> Stashed changes
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -73,7 +231,11 @@
         "^0.8.0"
       ],
       "artifacts": [
+<<<<<<< Updated upstream
         "Counters"
+=======
+        "Context"
+>>>>>>> Stashed changes
       ]
     },
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
@@ -119,6 +281,7 @@
         "ERC721"
       ]
     },
+<<<<<<< Updated upstream
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/Context.sol": {
       "lastModificationDate": 1684649793806,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
@@ -333,6 +496,8 @@
         "Math"
       ]
     },
+=======
+>>>>>>> Stashed changes
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/Address.sol": {
       "lastModificationDate": 1684649793762,
       "contentHash": "f31ad6fc4bbf9c06203987220156a6ba",
@@ -477,10 +642,17 @@
         "IERC721Metadata"
       ]
     },
+<<<<<<< Updated upstream
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/contracts/contracts/Election_step1.sol": {
       "lastModificationDate": 1684941382326,
       "contentHash": "349ed38829acb017f99b3b1ca19267e4",
       "sourceName": "contracts/contracts/Election_step1.sol",
+=======
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1684649793812,
+      "contentHash": "396031251978f8febfd90cb62cb240ec",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+>>>>>>> Stashed changes
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -504,11 +676,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./math/Math.sol"
+      ],
       "versionPragmas": [
         ">=0.4.22 <0.9.0"
       ],
       "artifacts": [
+<<<<<<< Updated upstream
         "Election_step1"
       ]
     },
@@ -516,6 +691,55 @@
       "lastModificationDate": 1684941382333,
       "contentHash": "435aa347b974345d125f63198594fe20",
       "sourceName": "contracts/contracts/Election_step2.sol",
+=======
+        "Strings"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1684650108133,
+      "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
+>>>>>>> Stashed changes
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+<<<<<<< Updated upstream
+        "Election_step2"
+=======
+        "ERC165"
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1684650108138,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -541,10 +765,46 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.4.22 <0.9.0"
+        "^0.8.0"
       ],
       "artifacts": [
-        "Election_step2"
+        "IERC165"
+>>>>>>> Stashed changes
+      ]
+    },
+    "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1684650108177,
+      "contentHash": "b9c58920ce74d6dc819161786112e7ee",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Math"
       ]
     }
   }
