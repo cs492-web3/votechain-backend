@@ -6,9 +6,11 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 //import "../../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract NFTToken is Ownable, ERC721URIStorage { 
-    uint constant public MAX_TOKEN_AVAIL = 32; //NOTE: 내가 ipfs에 올려놓은 json 파일의 개수
-    uint constant public MAX_TOKEN_TOMINT = 32; // 총 발행할 nft 개수, MAX_TOKEN_ONSALE값보다 작아야함
-    string constant public metadataURI = 'https://gateway.pinata.cloud/ipfs/QmfT1SF7fx9vZ1Vy8BygiReKMbqo1YHGuiFgyWrRDHjpw8';
+    uint public maxTokenToMint; // 총 발행할 nft 개수(ipfs에 올려놓은 json 파일의 개수)
+    //  uint public maxTokenToMint = 32;
+    string public metadataURI;
+    // string public metadataURI = 'https://gateway.pinata.cloud/ipfs/QmfT1SF7fx9vZ1Vy8BygiReKMbqo1YHGuiFgyWrRDHjpw8';
+    uint randomSeed;
 
     uint[] public availTokenList; // 아직 발행되지 않은 nft index 저장, realId, (1~MAX_TOKEN_ONSALE).json
     uint public totalMintedTokenCount; // 발행한 총 NFT 토큰 개수 (keeps tokenId)
@@ -16,16 +18,19 @@ contract NFTToken is Ownable, ERC721URIStorage {
     mapping(uint => uint) tokenIdToRealId;
 
    
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol){
-        //metadataURI = _metadataURI;
-        for (uint i = 0; i < MAX_TOKEN_AVAIL; i++) {
+    constructor(string memory _name, string memory _symbol, uint _randomSeed, uint _maxTokenToMint, string memory _metadataURI) ERC721(_name, _symbol){
+        randomSeed = _randomSeed;
+        maxTokenToMint = _maxTokenToMint;
+        metadataURI = _metadataURI;
+        for (uint i = 0; i < maxTokenToMint; i++) {
             availTokenList.push(i+1);
         }
+        
     }
     // --------- FUNCTIONS ----------
 
     function mintToken(address voter_addr) public returns (uint) {
-        require(totalMintedTokenCount <= MAX_TOKEN_TOMINT, "Error: Token is not available anymore.");
+        require(totalMintedTokenCount <= maxTokenToMint, "Error: Token is not available anymore.");
         uint tokenId = totalMintedTokenCount;
         uint realId = getRandomToken(voter_addr, tokenId);
         tokenIdToRealId[tokenId] = realId;
@@ -37,8 +42,7 @@ contract NFTToken is Ownable, ERC721URIStorage {
     }
 
     function getRandomToken(address _owner, uint _tokenId) private returns (uint) {
-        uint randSeed = 123;
-        uint randN = uint(keccak256(abi.encodePacked(_owner, _tokenId, randSeed))) % availTokenList.length;
+        uint randN = uint(keccak256(abi.encodePacked(_owner, _tokenId, randomSeed + totalMintedTokenCount))) % availTokenList.length;
         uint randomToken = availTokenList[randN];
         availTokenList[randN] = availTokenList[availTokenList.length - 1];
         availTokenList.pop();
@@ -50,8 +54,12 @@ contract NFTToken is Ownable, ERC721URIStorage {
 
     // ERC721.sol에 있는 함수 override (조회 함수, 아무것도 저장x)
     function tokenURI (uint _tokenId) public override view returns (string memory) {
-        string memory realId = Strings.toString(tokenIdToRealId[_tokenId]);        
+        string memory realId = Strings.toString(tokenIdToRealId[_tokenId]);    
         return string(abi.encodePacked(metadataURI, "/", realId,".json"));
+    }
+
+    function getIsMinted(uint _tokenId) public view returns (bool) {
+        return _tokenId < totalMintedTokenCount;
     }
 
     function getTotalMintedTokenCount() public view returns (uint) { 
@@ -65,6 +73,8 @@ contract NFTToken is Ownable, ERC721URIStorage {
     function getTotalAvailTokenCount() public view returns (uint) { 
         return availTokenList.length;
     }
+
+    
 
     // --------- Setter ---------
 
