@@ -131,12 +131,11 @@ contract Election_step2 {
     }
 
     function getCandidateVoteCount(uint id) public 
-        checkAdmin checkVoteEnded checkValidCand(id) view returns (uint) { //NOTE: 중간집계 가능하도록 할까, 아니면 투표 모두 종료 후에만 볼 수 있도록 할까?
+        checkVoteEnded checkValidCand(id) view returns (uint) { //NOTE: 모든 사람이 확인할 수 있도록 변경
         return candidates[id].voteCount;
     }
     
-    function getTotalVoteCount() public 
-        checkAdmin view returns (uint) { //NOTE: 중간집계 가능하도록 함
+    function getTotalVoteCount() public view returns (uint) { //NOTE: 중간집계 가능하도록 함, 모든 사람이 확인 가능
         return totalVoteCount;
     }
 
