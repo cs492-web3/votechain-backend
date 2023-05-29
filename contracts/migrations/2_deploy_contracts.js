@@ -1,7 +1,6 @@
+//var Election = artifacts.require("./Election_step2.sol");
+var Election = artifacts.require("./admin_contract.sol");
 
-var Election = artifacts.require("./Election_step2.sol");
-
-module.exports = function(deployer) {
+module.exports = function (deployer) {
   deployer.deploy(Election);
 };
-
