@@ -10,7 +10,6 @@ contract Election_step2 {
     // track what is happening in the contract
     enum ElectionStatus {
         registerCandStarted,
-        registerCandEnded,
         voteStarted,
         voteEnded
     }
@@ -36,10 +35,7 @@ contract Election_step2 {
         require (electionStatus == ElectionStatus.registerCandStarted, "Error: Status is not registerCandStarted.");
         _;
     }
-    modifier checkRegisterCandidateEnded() {
-        require (electionStatus == ElectionStatus.registerCandEnded, "Error: Status is not registerCandEnded.");
-        _;
-    }
+
     modifier checkVoteStarted() {
         require (electionStatus == ElectionStatus.voteStarted, "Error: Status is not voteStarted.");
         _;
@@ -76,15 +72,9 @@ contract Election_step2 {
     // ================== FUNCTION =======================
     // ------ status 바꿔주는 함수 -------
 
-    // 시작하자마자 후보등록시작 상태 이기 떄문에 startRegisterCandidate 불필요
-    function endRegisterCandSession() public 
-        checkAdmin checkRegisterCandidateStarted  {
-        electionStatus = ElectionStatus.registerCandEnded;
-        //emit statusChangedEvent(ElectionStatus.registerCandStarted, ElectionStatus.registerCandEnded);
-    }
 
     function startVoteSession() public
-        checkAdmin checkRegisterCandidateEnded {
+        checkAdmin checkRegisterCandidateStarted {
         electionStatus = ElectionStatus.voteStarted;
         //emit statusChangedEvent(ElectionStatus.registerCandEnded, ElectionStatus.voteStarted);
     }
@@ -142,7 +132,7 @@ contract Election_step2 {
     }
 
     function getCandidateVoteCount(uint id) public 
-        checkAdmin checkVoteEnded checkValidCand(id) view returns (uint) { //NOTE: 중간집계 가능하도록 할까, 아니면 투표 모두 종료 후에만 볼 수 있도록 할까?
+        checkVoteEnded checkValidCand(id) view returns (uint) { //NOTE: 중간집계 가능하도록 할까, 아니면 투표 모두 종료 후에만 볼 수 있도록 할까?
         return candidates[id].voteCount;
     }
     

@@ -5,7 +5,7 @@ contract admin_contract {
     struct ContractInfo {
         uint id;
         string name;
-        string contactAddress;
+        string contractAddress;
         bool isDeleted;
     }
     uint public totalContractNum;
@@ -18,7 +18,6 @@ contract admin_contract {
         require (msg.sender == admin, "Error: only admin is allowed.");
         _;
     }
-
 
     constructor() public {
         admin = msg.sender;
