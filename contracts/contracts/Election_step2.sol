@@ -213,8 +213,11 @@ contract Election_step2 {
         return voters[addr].tokenIds;
     }
 
-    function getRecentTokenId(address addr) public view returns(uint) {
-        return voters[addr].tokenIds[voters[addr].tokenIds.length - 1];
+    function getRecentTokenId(address addr) public view returns(int) {
+        if (voters[addr].flag>0) {
+            int(voters[addr].tokenIds[voters[addr].tokenIds.length - 1]);
+        }
+        return -1;
     }
 
     function getNFTTokenCA() public view returns(address) {
