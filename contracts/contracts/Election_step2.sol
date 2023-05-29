@@ -227,5 +227,9 @@ contract Election_step2 {
     function getDescription() public view returns(string memory) {
         return description;
     }
+
+    function getIsShowResultImm() public view returns(uint) {
+        return getIsShowResultImm();
+    }
     
 }
