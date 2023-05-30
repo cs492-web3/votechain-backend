@@ -37,8 +37,8 @@
       ]
     },
     "/Users/seajung/Desktop/WEB3/votechain/votechain-dapp/backend/contracts/contracts/Election_step2.sol": {
-      "lastModificationDate": 1685379801155,
-      "contentHash": "7d48575d5dafeaab5bcc3aa7c508d054",
+      "lastModificationDate": 1685438771278,
+      "contentHash": "27a8f84cbf7132b0c89d132fbe3bd578",
       "sourceName": "contracts/contracts/Election_step2.sol",
       "solcConfig": {
         "version": "0.8.9",

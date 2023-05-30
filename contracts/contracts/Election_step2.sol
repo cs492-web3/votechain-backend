@@ -214,7 +214,7 @@ contract Election_step2 {
 
     function getRecentTokenId(address addr) public view returns(int) {
         if (voters[addr].flag>0) {
-            int(voters[addr].tokenIds[voters[addr].tokenIds.length - 1]);
+            return int(voters[addr].tokenIds[voters[addr].tokenIds.length - 1]);
         }
         return -1;
     }
@@ -228,7 +228,7 @@ contract Election_step2 {
     }
 
     function getIsShowResultImm() public view returns(uint) {
-        return getIsShowResultImm();
+        return isShowResultImm;
     }
     
 }

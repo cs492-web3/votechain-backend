@@ -4,11 +4,11 @@ require("@nomiclabs/hardhat-etherscan");
 async function main() {
   // Verify the contract after deploying
   await hre.run("verify:verify", {
-    address: "0x79A0534e0F2fE5Ce741CF65E35BcaBa3f9fdBdd2",
+    address: "0xAA9b4C0d76ca19E350A1Be05A858d78096465E22",
     constructorArguments: [
-      "0x03985299ECB2E27e7076A52165FB4A7ebbEe5655",
-      "Which one is the KAIST best restaurant?",
-      1
+      "0xB069bab759C093253E83E81C9eB6e47212660b43",
+      "Which Singer Do You Want To See in the KAIST Festival?",
+      1,
     ],
     // for example, if your constructor argument took an address, do something like constructorArguments: ["0xABCDEF..."],
   });
