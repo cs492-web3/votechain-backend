@@ -115,13 +115,7 @@ contract Election_step2 {
         checkAdmin checkVoteEnded {
         electionStatus = ElectionStatus.voteStarted;
     }
-    // special funciton~~
-    function restartVoteSession()  public
-        checkAdmin checkVoteEnded {
-        electionStatus = ElectionStatus.voteStarted;
-    }
     
-
     // ------ 투표 시스템을 위한 함수 ------
 
     function registerCandidate (string memory name) private 
@@ -217,7 +211,7 @@ contract Election_step2 {
     function getTokenIds(address addr) public view returns(uint[] memory) {
         return voters[addr].tokenIds;
     }
-
+    // getTokenId 대신
     function getRecentTokenId(address addr) public view returns(uint) {
         return voters[addr].tokenIds[voters[addr].tokenIds.length - 1];
     }

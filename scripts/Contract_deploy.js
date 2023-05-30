@@ -4,7 +4,7 @@ async function main() {
 	const NFTContract_ = await hre.ethers.getContractFactory("NFTToken");
 	const Contract = await hre.ethers.getContractFactory("Election_step2");
 
-	const description = "Which one is the KAIST best restaurant?";
+	const description = "Which_one_is_the_KAIST_best_restaurant?";
 	const randomSeed = 111;
 	const maxTokenToMint = 32;
 	const metadataURI = 'https://gateway.pinata.cloud/ipfs/QmfT1SF7fx9vZ1Vy8BygiReKMbqo1YHGuiFgyWrRDHjpw8';
